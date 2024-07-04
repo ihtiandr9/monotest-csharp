@@ -1,0 +1,73 @@
+using System;
+
+namespace Hello
+{
+  class Coefficient
+  {
+    int _val;
+    public Coefficient(int val)
+    {
+      _val = val;
+    }
+    public override string ToString()
+    {
+      if (_val == 1) return "";
+      return _val.ToString();
+    }
+    public int Value()
+    {
+      return _val;
+    }
+  }
+  class Equation
+  {
+    Coefficient _a;
+    Coefficient _b;
+    Coefficient _c;
+    public Equation(int a, int b, int c)
+    {
+      _a = new Coefficient(a);
+      _b = new Coefficient(b);
+      _c = new Coefficient(c);
+    }
+
+    public void PrintMe()
+    {
+      string eqString = "";
+      if (_a.Value() != 0) eqString = _a.ToString() + "x^2";
+      if (_b.Value() != 0) eqString += " + " + _b.ToString() + "x";
+      if (_c.Value() != 0) eqString += " + " + _c.ToString();
+      eqString += " = 0";
+      Console.WriteLine("Solving Equation\n");
+      Console.WriteLine(eqString);
+      //Console.WriteLine($"{_a.ToString()}x^2 + {_b.ToString()}x + {_c.ToString()} = 0");
+    }
+  }
+
+  class Hello
+  {
+    static void Main(string[] args)
+    {
+
+      int argc = args.Length;
+      Equation eq;
+
+      switch (argc)
+      {
+        case 3:
+          eq = new Equation(int.Parse(args[0]), int.Parse(args[1]), int.Parse(args[2]));
+          break;
+        case 2:
+          eq = new Equation(int.Parse(args[0]), int.Parse(args[1]), 0);
+          break;
+        case 1:
+          eq = new Equation(int.Parse(args[0]), 0, 0);
+          break;
+        default:
+          eq = new Equation(0, 0, 0);
+          break;
+      }
+      eq.PrintMe();
+    }
+  }
+}
