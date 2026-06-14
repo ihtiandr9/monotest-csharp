@@ -1,22 +1,21 @@
 using System;
+using System.Numerics;
 
 namespace Equations
 {
     class Coefficient
     {
-        int val;
+        public int Value { get; set; }
+
         public Coefficient(int val)
         {
-            this.val = val;
+            Value = val;
         }
+
         public override string ToString()
         {
-            if (val == 1) return "";
-            return val.ToString();
-        }
-        public override ToIint()
-        {
-            return val;
+            if (Value == 1) return "";
+            return Value.ToString();
         }
     }
     class Equation
@@ -34,12 +33,33 @@ namespace Equations
         public void PrintMe()
         {
             string eqString = "";
-            if (a != 0) eqString = a.ToString() + "x^2";
-            if (b != 0) eqString += " + " + b.ToString() + "x";
-            if (c != 0) eqString += " + " + c.ToString();
+            if (a.Value != 0) eqString = a.ToString() + "x^2";
+            if (b.Value != 0) eqString += " + " + b.ToString() + "x";
+            if (c.Value != 0) eqString += " + " + c.ToString();
             eqString += " = 0";
             Console.WriteLine("Solving Equation\n");
-            Console.WriteLine(eqString);            
+            Console.WriteLine(eqString);
+        }
+
+        public double Discriminant()
+        {
+            return b.Value * b.Value - 4 * a.Value * c.Value;
+        }
+
+        public Complex[] Roots()
+        {
+            double d = Discriminant();
+            double re = -b.Value / (2.0 * a.Value);
+            if (d >= 0)
+                return new Complex[] {
+                    new Complex(re + Math.Sqrt(d) / (2.0 * a.Value), 0),
+                    new Complex(re - Math.Sqrt(d) / (2.0 * a.Value), 0)
+                };
+            else
+                return new Complex[] {
+                    new Complex(re, Math.Sqrt(-d) / (2.0 * a.Value)),
+                    new Complex(re, -Math.Sqrt(-d) / (2.0 * a.Value))
+                };
         }
     }
 }

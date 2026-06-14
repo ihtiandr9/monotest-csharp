@@ -3,7 +3,7 @@ BIN = hello.exe
 all: ${BIN}
 
 ${BIN}: hello.cs equation.cs
-	mcs hello.cs equation.cs
+	mcs -r:System.Numerics.dll hello.cs equation.cs
 run: hello.exe
 	mono hello.exe 1 2 3 
 clean:

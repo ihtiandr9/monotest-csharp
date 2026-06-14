@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Equations;
 
 namespace Hello
@@ -26,6 +27,13 @@ namespace Hello
           break;
       }
       eq.PrintMe();
+      Console.WriteLine("Discriminant = " + eq.Discriminant().ToString("F4"));
+
+      Complex[] roots = eq.Roots();
+      for (int i = 0; i < roots.Length; i++)
+          Console.WriteLine("Root" + (i + 1) + " = (" +
+              roots[i].Real.ToString("F4") + ", " +
+              roots[i].Imaginary.ToString("F4") + ")");
     }
   }
 }
