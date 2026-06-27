@@ -10,5 +10,9 @@ class Program
 
         var printer = new Printer();
         obj.Print(printer);
+
+        printer.PrintLine("\nAfter 2s acceleration:");
+        obj.Speed = (Speed)(obj.Speed + 2 * obj.Accel);
+        obj.Print(printer);
     }
 }

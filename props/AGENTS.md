@@ -15,6 +15,7 @@ make clean  # remove binary
 - `MyProperty.cs` — base class with `Value` / `Unit` properties and `ToString()`
 - `Speed.cs` / `Accel.cs` — inherit from `MyProperty`, set their own default unit
 - `MyObject.cs` — composes `Speed` and `Accel` instances
+- `Printer.cs` — struct wrapping `Console.WriteLine`/`Console.Write`; consumed by `MyProperty.Print()` and `MyObject.Print()`
 - `Program.cs` — creates a `MyObject`, prints hello + state
 
 ## Conventions
